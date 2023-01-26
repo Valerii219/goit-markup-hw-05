@@ -278,10 +278,12 @@ img {
 }
 .anim-window {
   position: relative;
-  background-color: var(--secondary-background-color);
 }
-.overay {
+.overlay {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
