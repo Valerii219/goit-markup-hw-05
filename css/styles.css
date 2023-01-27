@@ -276,21 +276,25 @@ img {
   flex-basis: calc((100% - 72px) / 3);
   transition: box-shadow var(--time-cubic);
 }
+.content-title:is(:hover, :focus) .overlay {
+  transform: translateY(0);
+}
 .anim-window {
   position: relative;
+  overflow: hidden;
 }
 .overlay {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  font-weight: 400;
+  height: 100%;
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: 0.02em;
   color: var(--team-section-color);
   background-color: var(--secondary-background-color);
-  padding: 40px 32px 164px 32px;
+  padding: 40px 32px 0 32px;
+  transform: translateY(100%);
+  transition: transform var(--time-cubic);
+  overflow: auto;
 }
 .portfolio-card {
   padding-left: 16px;
@@ -523,17 +527,19 @@ img {
   height: 100%;
   z-index: 100;
   background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity 550ms linear, visibility 550ms linear;
 }
-.backdrop.is-hidden {
+.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
+
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(0);
   min-width: 408px;
   min-height: 576px;
   background-color: var(--modal-window);
@@ -541,14 +547,15 @@ img {
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 6px;
+  transition: transform 550ms cubic-bezier(0.48, -0.01, 1, 0.01);
+}
+.backdrop.is-hidden .modal {
+  transform: translate(70%, -75%) rotate(145deg);
 }
 .btn-modal-close {
   position: absolute;
   top: 6px;
   right: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 24px;
   height: 24px;
   border-radius: 50%;
